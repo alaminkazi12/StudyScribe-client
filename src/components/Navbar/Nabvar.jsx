@@ -1,7 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
+import { AuthContext } from "../../context/AuthProvider";
+import { useContext } from "react";
+import { Tooltip } from "react-tooltip";
 
 const Nabvar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const links1 = (
     <>
       <li>
@@ -83,10 +88,7 @@ const Nabvar = () => {
           checked={isDark} // Added checked attribute based on isDark state
         /> */}
 
-        <Link to="/login" className="btn ">
-          Login
-        </Link>
-        {/* {user ? (
+        {user ? (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -127,7 +129,7 @@ const Nabvar = () => {
           <Link to="/login" className="btn ">
             Login
           </Link>
-        )} */}
+        )}
       </div>
     </div>
   );
