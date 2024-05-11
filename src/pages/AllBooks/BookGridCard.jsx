@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { GoStar } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const BookGridCard = ({ product }) => {
-  const { image, name, author, category, rating } = product;
+  const { image, name, author, category, rating, _id } = product;
   return (
     <div className="card  bg-base-100 border-2 border-[#c5cbd1]">
       <figure>
@@ -20,7 +21,9 @@ const BookGridCard = ({ product }) => {
           </p>
         </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary bg-[#004d99]">Update Now</button>
+          <Link to={`/update/${_id}`}>
+            <button className="btn btn-primary bg-[#004d99]">Update Now</button>
+          </Link>
         </div>
       </div>
     </div>
