@@ -1,19 +1,88 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [show, setshow] = useState(false);
+  const { signUp, logOut, updateUserProfile } = useContext(AuthContext);
+  const [signUpError, setupSignUpError] = useState("");
+  const navigate = useNavigate();
+
+  //   signup handler
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    const termsAccepted = e.target.terms.checked;
+
+    // validation
+    if (!(password === confirmPassword)) {
+      setupSignUpError("Password and confirm password should be matched");
+      return;
+    } else if (password.length < 6) {
+      setupSignUpError("Password must be at least six character");
+      return;
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(password)
+    ) {
+      setupSignUpError(
+        "Password Must have Uppercase, Lowercase, Alpha Characters"
+      );
+      return;
+    } else if (!termsAccepted) {
+      setupSignUpError("Please accept the terms and conditons");
+      return;
+    }
+
+    // default error or success
+
+    setupSignUpError("");
+
+    // sign up
+    signUp(email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user);
+
+        toast.success("Account Created Successfully!", {
+          position: "top-right",
+        });
+
+        // update profile
+        updateUserProfile(name, photo).then(() => {});
+
+        // logout
+        logOut();
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setupSignUpError(errorMessage.split("(auth/")[1].split(")")[0]);
+      });
+  };
+
   return (
     <div className="mt-10">
       {/* <Helmet>
         <title>SignUp | CraftyFiber.com</title>
       </Helmet> */}
+      <ToastContainer />
       <h2 className="lg:text-2xl font-bold text-center text-[#004d99]">
         New to StudyScribe? <br /> Quickly signup for an account now.
       </h2>
       <form
-        // onSubmit={handleSignUp}
+        onSubmit={handleSignUp}
         className="card-body  md:w-1/2 md:mx-auto bg-slate-100 rounded-2xl mt-10"
       >
         <div className="form-control">
@@ -95,8 +164,7 @@ const Signup = () => {
           <span>Accpet the terms and conditions</span>
         </label>
 
-        {/* {signUpError && <p className="text-red-500">{signUpError}</p>}
-        {success && <p className="text-green-500">{success}</p>} */}
+        {signUpError && <p className="text-red-500">{signUpError}</p>}
 
         <div className="form-control mt-6">
           <button className="btn bg-[#ffd700] hover:bg-[#808080] ">
