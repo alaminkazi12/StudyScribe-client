@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookGridCard from "./BookGridCard";
 
 const AllBooks = () => {
   const { count } = useLoaderData();
@@ -33,6 +34,11 @@ const AllBooks = () => {
           >
             {page}
           </button>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
+        {products.map((product) => (
+          <BookGridCard key={product._id} product={product}></BookGridCard>
         ))}
       </div>
     </div>
