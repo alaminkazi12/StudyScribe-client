@@ -14,7 +14,7 @@ const Nabvar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "font-bold border-b-2 border-b-[#004d99]  px-5 py-2 text-[#3D5A80]"
+              ? "font-bold border-b-2 border-b-[#004d99]  px-2 py-2 text-[#3D5A80]"
               : ""
           }
         >
@@ -23,22 +23,10 @@ const Nabvar = () => {
       </li>
       <li>
         <NavLink
-          to="/addbook"
-          className={({ isActive }) =>
-            isActive
-              ? "font-bold border-b-2 border-b-[#004d99]  px-5 py-2 text-[#3D5A80]"
-              : ""
-          }
-        >
-          Add Book
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/allbooks"
           className={({ isActive }) =>
             isActive
-              ? "font-bold border-b-2 border-b-[#004d99]  px-5 py-2 text-[#3D5A80]"
+              ? "font-bold border-b-2 border-b-[#004d99]  px-2 py-2 text-[#3D5A80]"
               : ""
           }
         >
@@ -47,10 +35,22 @@ const Nabvar = () => {
       </li>
       <li>
         <NavLink
+          to="/addbook"
+          className={({ isActive }) =>
+            isActive
+              ? "font-bold border-b-2 border-b-[#004d99]  px-2 py-2 text-[#3D5A80]"
+              : ""
+          }
+        >
+          Add Book
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/borrowedbooks"
           className={({ isActive }) =>
             isActive
-              ? "font-bold border-b-2 border-b-[#004d99]  px-5 py-2 text-[#3D5A80]"
+              ? "font-bold border-b-2 border-b-[#004d99]  px-2 py-2 text-[#3D5A80]"
               : ""
           }
         >
