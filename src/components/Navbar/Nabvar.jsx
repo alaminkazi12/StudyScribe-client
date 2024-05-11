@@ -60,7 +60,7 @@ const Nabvar = () => {
     </>
   );
   return (
-    <div className="navbar bg-[#f5f5f5] mt-6">
+    <div className="navbar mt-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
