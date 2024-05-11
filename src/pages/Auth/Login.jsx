@@ -1,25 +1,83 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigation } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
+  const { login, googleLogin, gitHubLogin } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigation();
+  const [signInError, setupSignInError] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    // login
+    login(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        toast.success("Logged In Successfully!", {
+          position: "top-right",
+        });
+
+        // naviage after login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        setupSignInError(errorMessage.split("(auth/")[1].split(")")[0]);
+      });
+  };
+
+  //   google login
+
+  const GoogleLoginHandler = () => {
+    googleLogin().then(() => {
+      toast.success("Logged In Successfully!", {
+        position: "top-right",
+      });
+
+      navigate(location?.state ? location.state : "/");
+    });
+  };
+
+  //   github Login
+  const GitHubLoginHandler = () => {
+    gitHubLogin().then(() => {
+      toast.success("Logged In Successfully!", {
+        position: "top-right",
+      });
+
+      navigate(location?.state ? location.state : "/");
+    });
+  };
   return (
     <div className="mt-10">
       {/* <Helmet>
         <title>Login | CraftyFiber.com</title>
       </Helmet> */}
+      <ToastContainer />
       <h2 className="  lg:text-4xl font-bold text-center text-[#004d99]">
         Login
       </h2>
       <div className="flex items-center justify-center gap-10 mt-10">
         <button
-          // onClick={GoogleLoginHandler}
+          onClick={GoogleLoginHandler}
           className="btn btn-circle border-2 border-gray-400 text-3xl"
         >
           <FcGoogle />
         </button>
         <button
-          // onClick={GitHubLoginHandler}
+          onClick={GitHubLoginHandler}
           className="btn btn-circle border-2 border-gray-400 text-3xl"
         >
           <FaGithub />
@@ -27,7 +85,7 @@ const Login = () => {
       </div>
       <div className="divider text-[#004d99]">Or</div>
       <form
-        // onSubmit={handleLogin}
+        onSubmit={handleLogin}
         className="card-body md:w-1/2 md:mx-auto bg-[#f5f5f5] rounded-2xl mt-10"
       >
         <div className="form-control">
@@ -60,8 +118,8 @@ const Login = () => {
             </a>
           </label>
         </div>
-        {/* {signInError && <p className=" text-red-800">{signInError}</p>}
-        {loginSuccess && <p className="text-green-800">{loginSuccess}</p>} */}
+        {signInError && <p className=" text-red-800">{signInError}</p>}
+
         <div className="form-control mt-6">
           <button className="btn bg-[#ffd700] hover:bg-[#808080] ">
             Sign In
