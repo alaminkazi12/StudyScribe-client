@@ -72,7 +72,7 @@ const UpdateBook = () => {
             name="category"
             className="select select-bordered w-full max-w-xs"
           >
-            <option disabled defaultValue>
+            <option disabled value={category}>
               Select the appropriate category name.
             </option>
             <option> Fantasy</option>
