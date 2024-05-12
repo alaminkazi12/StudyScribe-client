@@ -17,6 +17,12 @@ const BookDetails = () => {
     _id,
   } = useLoaderData();
 
+  const handleReturn = (e) => {
+    // e.preventDefault();
+    const returnDate = e.target.date.value;
+    console.log(returnDate);
+  };
+
   return (
     <div className="mt-10 ">
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
@@ -54,8 +60,49 @@ const BookDetails = () => {
               />
             </li>
           </ul>
+
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+          <button
+            className="btn"
+            onClick={() => document.getElementById("my_modal_1").showModal()}
+          >
+            open modal
+          </button>
+          <dialog id="my_modal_1" className="modal">
+            <div className="modal-box">
+              <div className="">
+                <form onSubmit={handleReturn} method="dialog">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-bold text-xl">
+                        Retun Date
+                      </span>
+                    </label>
+                    <input
+                      type="date"
+                      name="date"
+                      className="input input-bordered"
+                      required
+                    />
+                  </div>
+
+                  {/* if there is a button in form, it will close the modal */}
+                  <div className="form-control mt-6">
+                    <button className="btn bg-[#ffd700] hover:bg-[#808080] ">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </dialog>
           <div className="mt-4 flex justify-end">
-            <button className="btn bg-[#004d99] text-white">Borrow Now</button>
+            <button
+              className="btn bg-[#004d99] text-white"
+              onClick={() => document.getElementById("my_modal_1").showModal()}
+            >
+              Borrow Now
+            </button>
           </div>
         </div>
       </div>
