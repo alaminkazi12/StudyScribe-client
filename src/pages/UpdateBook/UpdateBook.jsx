@@ -1,15 +1,49 @@
+import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateBook = () => {
   const book = useLoaderData();
   console.log(book);
-  const { image, name, author, category, rating } = book;
+  const { image, name, author, category, rating, _id } = book;
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const image = form.image.value;
+    const name = form.name.value;
+    const author = form.author.value;
+    const rating = form.rating.value;
+    const category = form.category.value;
+
+    const updatedBooks = {
+      image,
+      name,
+      author,
+      rating,
+      category,
+    };
+
+    axios.put(`http://localhost:5000/book/${_id}`, updatedBooks).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Book Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+
+    console.log(updatedBooks);
+  };
   return (
     <div className="mt-10">
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         Update Books : {name}
       </h2>
-      <form className="card-body w-1/2 mx-auto">
+      <form onSubmit={handleUpdate} className="card-body w-1/2 mx-auto">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Image</span>
