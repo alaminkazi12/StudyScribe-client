@@ -60,8 +60,10 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/category/${params.name}`),
       },
       {
-        path: "/book/:name",
+        path: "/book/:id",
         element: <BookDetails></BookDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/book/${params.id}`),
       },
     ],
   },

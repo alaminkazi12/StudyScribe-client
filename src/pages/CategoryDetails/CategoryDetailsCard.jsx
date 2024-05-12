@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 const CategoryDetailsCard = ({ book }) => {
-  const { author, image, name, rating, category } = book;
+  const { author, image, name, rating, category, _id } = book;
   return (
     <div className="flex items-center gap-10 bg-[#f5f5f5] border-2 rounded-2xl p-6 mt-4">
       <div className="w-[40%]">
@@ -33,7 +33,7 @@ const CategoryDetailsCard = ({ book }) => {
           />
         </div>
         <div className="flex bottom-0 justify-end">
-          <Link to={`/book/${name}`}>
+          <Link to={`/book/${_id}`}>
             <button className="btn  bg-[#004d99] text-white">Details</button>
           </Link>
         </div>
