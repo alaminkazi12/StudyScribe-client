@@ -4,7 +4,7 @@ import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,7 +13,6 @@ const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const displayName = user?.displayName;
-  console.log(email, displayName);
   const {
     image,
     name,
@@ -28,15 +27,18 @@ const BookDetails = () => {
   const [upQuantity, setupQuantity] = useState(quantity);
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
-  const handleBorrow = (e) => {
+  useEffect(() => {
     axios
       .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
       .then((res) => {
         setBorrowedBooks(res.data);
         console.log(res.data);
       });
+  }, [user]);
 
-    const alreadyBorrowed = borrowedBooks.find((book) => book.bookId == _id);
+  const handleBorrow = (e) => {
+    const alreadyBorrowed = borrowedBooks.find((book) => book.bookId === _id);
+
     if (alreadyBorrowed) {
       return toast.error("You have already borrowed this book", {
         position: "top-right",
@@ -63,6 +65,7 @@ const BookDetails = () => {
         .then((res) => {
           if (res.data.insertedId) {
             setupQuantity(quantity - 1);
+            location.reload();
             Swal.fire({
               icon: "success",
               title: "Borrowed Successfully",
