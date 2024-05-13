@@ -30,7 +30,7 @@ const BestOfMonth = () => {
             />
           </div>
         </div>
-        <div className="flex items-center gap-10 bg-[#3d8eb3] h-[350px] p-6">
+        <div className="flex items-center gap-10 bg-[#6ca1b9] h-[350px] p-6">
           <div className="flex flex-col items-center space-y-3">
             <h4 className="text-sm text-[#004d99]">Featured Book Spotlight</h4>
             <h2 className="text-3xl text-center">One Hundred Years..</h2>
