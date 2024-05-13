@@ -10,10 +10,9 @@ const BorrowedBooks = () => {
     axios
       .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
       .then((res) => {
-        console.log(res.data);
         setBorrowedBooks(res.data);
       });
-  }, [user?.email]);
+  }, [user?.email, setBorrowedBooks]);
 
   return (
     <div className="mt-10">

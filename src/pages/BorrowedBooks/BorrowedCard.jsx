@@ -12,15 +12,14 @@ const BorrowedCard = ({ book }) => {
     });
   }, [bookId]);
 
-  const { image, name, author, category, _id } = borrowedBook;
+  const { image, name, author, category } = borrowedBook;
 
   const handleReturn = () => {
     axios.put(`http://localhost:5000/retun-book/${bookId}`).then((res) => {
-      console.log(res.data);
       if (res.data.deletedCount > 0) {
         Swal.fire({
           icon: "success",
-          title: "Borrowed Successfully",
+          title: "Returned Successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -64,6 +63,8 @@ const BorrowedCard = ({ book }) => {
 
 BorrowedCard.propTypes = {
   book: PropTypes.object,
+  borrowedBooks: PropTypes.array,
+  setBorrowedBooks: PropTypes.func,
 };
 
 export default BorrowedCard;
