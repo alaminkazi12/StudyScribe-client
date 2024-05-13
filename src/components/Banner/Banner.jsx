@@ -7,18 +7,19 @@ import {
   EffectCoverflow,
 } from "swiper/modules";
 import "swiper/css/bundle";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import BannerCard from "./BannerCard";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Banner = () => {
+  const axiosSecure = useAxiosSecure([]);
   const [featuredbooks, setFeaturedBooks] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/featuredbooks").then((res) => {
+    axiosSecure.get("/featuredbooks").then((res) => {
       console.log(res.data);
       setFeaturedBooks(res.data);
     });
-  }, []);
+  }, [axiosSecure]);
 
   return (
     <div className="h-[550px] bg-[#f5f5f5] rounded-2xl mt-10">

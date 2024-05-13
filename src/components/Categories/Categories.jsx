@@ -1,18 +1,19 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Categorycard from "./Categorycard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/bundle";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Categories = () => {
+  const axiosSecure = useAxiosSecure([]);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/categories").then((res) => {
+    axiosSecure.get("/categories").then((res) => {
       console.log(res.data);
       setCategories(res.data);
     });
-  }, []);
+  }, [axiosSecure]);
   return (
     <div className="mt-14 bg-[#f5f5f5] rounded-2xl p-6">
       <div className="text-center space-y-4">

@@ -3,13 +3,14 @@ import Rating from "react-rating";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const BookDetails = () => {
+  const axiosSecure = useAxiosSecure([]);
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const displayName = user?.displayName;
@@ -28,13 +29,11 @@ const BookDetails = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
-      .then((res) => {
-        setBorrowedBooks(res.data);
-        console.log(res.data);
-      });
-  }, [user]);
+    axiosSecure.get(`/borrow-book/?email=${user?.email}`).then((res) => {
+      setBorrowedBooks(res.data);
+      console.log(res.data);
+    });
+  }, [user, axiosSecure]);
 
   const handleBorrow = (e) => {
     const alreadyBorrowed = borrowedBooks.find((book) => book.bookId === _id);
@@ -60,20 +59,18 @@ const BookDetails = () => {
     const updatedInfo = { returnDate, email, displayName, BorrowDate };
 
     if (upQuantity > 0) {
-      axios
-        .post(`http://localhost:5000/borrow-book/${_id}`, { updatedInfo })
-        .then((res) => {
-          if (res.data.insertedId) {
-            setupQuantity(quantity - 1);
-            location.reload();
-            Swal.fire({
-              icon: "success",
-              title: "Borrowed Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
+      axiosSecure.post(`/borrow-book/${_id}`, { updatedInfo }).then((res) => {
+        if (res.data.insertedId) {
+          setupQuantity(quantity - 1);
+          location.reload();
+          Swal.fire({
+            icon: "success",
+            title: "Borrowed Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
     }
   };
 
