@@ -4,8 +4,9 @@ import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+import Swal from "sweetalert2";
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
@@ -22,18 +23,36 @@ const BookDetails = () => {
     rating,
     _id,
   } = useLoaderData();
+  const [upQuantity, setupQuantity] = useState(quantity);
 
   const handleReturn = (e) => {
     // e.preventDefault();
+    const currentDate = () => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+
+    const BorrowDate = currentDate();
     const returnDate = e.target.date.value;
     console.log(returnDate);
-    const updatedInfo = { returnDate, email, displayName };
+    const updatedInfo = { returnDate, email, displayName, BorrowDate };
 
-    if (quantity > 0) {
+    if (upQuantity > 0) {
       axios
         .post(`http://localhost:5000/borrow-book/${_id}`, { updatedInfo })
         .then((res) => {
-          console.log(res.data);
+          if (res.data.insertedId) {
+            setupQuantity(quantity - 1);
+            Swal.fire({
+              icon: "success",
+              title: "Borrowed Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         });
     }
   };
@@ -62,7 +81,7 @@ const BookDetails = () => {
           <ul className="flex items-center  gap-10 mt-6">
             <li>
               {" "}
-              <b>Quantity: </b> {quantity}
+              <b>Quantity: </b> {upQuantity}
             </li>
             <li className="text-xl">
               <Rating
