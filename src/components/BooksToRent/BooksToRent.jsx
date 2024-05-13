@@ -3,15 +3,16 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/bundle";
 import BookRentCard from "./BookRentCard";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BooksToRent = () => {
   const [Products, setProducts] = useState([]);
 
-  axios.get(`http://localhost:5000/books`).then((res) => {
-    console.log(res.data);
-    setProducts(res.data);
-  });
+  useEffect(() => {
+    axios.get(`http://localhost:5000/books`).then((res) => {
+      setProducts(res.data);
+    });
+  }, []);
 
   return (
     <div className="mt-14">
