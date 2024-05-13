@@ -7,6 +7,8 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const BookDetails = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
@@ -24,8 +26,23 @@ const BookDetails = () => {
     _id,
   } = useLoaderData();
   const [upQuantity, setupQuantity] = useState(quantity);
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
 
-  const handleReturn = (e) => {
+  const handleBorrow = (e) => {
+    axios
+      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
+      .then((res) => {
+        setBorrowedBooks(res.data);
+        console.log(res.data);
+      });
+
+    const alreadyBorrowed = borrowedBooks.find((book) => book.bookId == _id);
+    if (alreadyBorrowed) {
+      return toast.error("You have already borrowed this book", {
+        position: "top-right",
+      });
+    }
+
     // e.preventDefault();
     const currentDate = () => {
       const date = new Date();
@@ -59,6 +76,7 @@ const BookDetails = () => {
 
   return (
     <div className="mt-10 ">
+      <ToastContainer />
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         {name}
       </h2>
@@ -99,7 +117,7 @@ const BookDetails = () => {
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
               <div className="">
-                <form onSubmit={handleReturn} method="dialog">
+                <form onSubmit={handleBorrow} method="dialog">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text font-bold text-xl">

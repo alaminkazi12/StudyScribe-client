@@ -14,6 +14,7 @@ const BorrowedBooks = () => {
         setBorrowedBooks(res.data);
       });
   }, [user?.email]);
+
   return (
     <div className="mt-10">
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
@@ -24,9 +25,9 @@ const BorrowedBooks = () => {
           {/* head */}
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th className="md:text-lg ">Book Details</th>
+              <th className="md:text-lg ">Borrow Date</th>
+              <th className="md:text-lg ">Retrun Date</th>
               <th></th>
             </tr>
           </thead>

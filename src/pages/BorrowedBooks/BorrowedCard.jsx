@@ -1,6 +1,7 @@
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const BorrowedCard = ({ book }) => {
   const { bookId, BorrowDate, returnDate } = book;
@@ -12,6 +13,20 @@ const BorrowedCard = ({ book }) => {
   }, [bookId]);
 
   const { image, name, author, category, _id } = borrowedBook;
+
+  const handleReturn = () => {
+    axios.put(`http://localhost:5000/retun-book/${bookId}`).then((res) => {
+      console.log(res.data);
+      if (res.data.deletedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Borrowed Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   return (
     <tr>
@@ -39,7 +54,9 @@ const BorrowedCard = ({ book }) => {
       <td className="md:text-xl">{BorrowDate}</td>
       <td className="md:text-xl">{returnDate}</td>
       <th>
-        <button className="btn bg-[#004d99] text-white ">Return Now</button>
+        <button onClick={handleReturn} className="btn bg-[#004d99] text-white ">
+          Return Now
+        </button>
       </th>
     </tr>
   );
