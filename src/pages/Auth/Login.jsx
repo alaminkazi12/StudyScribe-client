@@ -1,6 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Link, useLocation, useNavigation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const { login, googleLogin, gitHubLogin } = useContext(AuthContext);
   const location = useLocation();
-  const navigate = useNavigation();
+  const navigate = useNavigate();
   const [signInError, setupSignInError] = useState("");
 
   const handleLogin = (e) => {
