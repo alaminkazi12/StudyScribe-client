@@ -23,6 +23,7 @@ const BorrowedCard = ({ book }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        location.reload();
       }
     });
   };
