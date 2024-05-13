@@ -1,11 +1,34 @@
 import { Link, NavLink } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import { AuthContext } from "../../context/AuthProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 
 const Nabvar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  const [isDark, setIsDark] = useState(() => {
+    // Check if the theme preference is saved in localStorage
+    const savedTheme = localStorage.getItem("theme");
+    // If saved theme is "dark", return true, otherwise return false
+    return savedTheme === "dark";
+  });
+
+  useEffect(() => {
+    // Set the data-theme attribute based on the initial state
+    const htmlElement = document.querySelector("html");
+    htmlElement.setAttribute("data-theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
+  const toogleDarkMode = () => {
+    const htmlElement = document.querySelector("html");
+    // const checkbox = document.querySelector(".toggle");
+    const newIsDark = !isDark;
+    setIsDark(newIsDark);
+    htmlElement.setAttribute("data-theme", newIsDark ? "dark" : "light");
+    // Save the selected mode in localStorage
+    localStorage.setItem("theme", newIsDark ? "dark" : "light");
+  };
 
   const handleLogout = () => [
     logOut()
@@ -87,12 +110,12 @@ const Nabvar = () => {
         <ul className="flex gap-8">{links1}</ul>
       </div>
       <div className="navbar-end">
-        {/* <input
+        <input
           onChange={toogleDarkMode}
           type="checkbox"
           className="toggle mr-4"
           checked={isDark} // Added checked attribute based on isDark state
-        /> */}
+        />
 
         {user ? (
           <div className="dropdown dropdown-end">
