@@ -120,8 +120,8 @@ const Nabvar = () => {
               <li>
                 <Link to="/update_profile">Update Profile</Link>
               </li>
-              <li onClick={logOut}>
-                <a>Logout</a>
+              <li onClick={() => logOut()}>
+                <a>Log Out</a>
               </li>
             </ul>
           </div>

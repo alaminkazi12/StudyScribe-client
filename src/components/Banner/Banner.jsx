@@ -26,16 +26,15 @@ const Banner = () => {
         pagination={{
           type: "fraction",
         }}
-        effect={"coverflow"}
-        coverflowEffect={{
-          rotate: 100,
-          stretch: 0,
-          depth: 100,
-          modifier: 2,
-          slideShadows: true,
-        }}
+        // effect={"coverflow"}
+        // coverflowEffect={{
+        //   rotate: 100,
+        //   stretch: 0,
+        //   depth: 100,
+        //   modifier: 2,
+        //   slideShadows: true,
+        // }}
         zoom={true}
-        loop={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
