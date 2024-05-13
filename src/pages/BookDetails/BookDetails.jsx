@@ -3,8 +3,14 @@ import Rating from "react-rating";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
-
+import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 const BookDetails = () => {
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+  const displayName = user?.displayName;
+  console.log(email, displayName);
   const {
     image,
     name,
@@ -21,6 +27,15 @@ const BookDetails = () => {
     // e.preventDefault();
     const returnDate = e.target.date.value;
     console.log(returnDate);
+    const updatedInfo = { returnDate, email, displayName };
+
+    if (quantity > 0) {
+      axios
+        .post(`http://localhost:5000/borrow-book/${_id}`, { updatedInfo })
+        .then((res) => {
+          console.log(res.data);
+        });
+    }
   };
 
   return (
@@ -62,12 +77,6 @@ const BookDetails = () => {
           </ul>
 
           {/* Open the modal using document.getElementById('ID').showModal() method */}
-          <button
-            className="btn"
-            onClick={() => document.getElementById("my_modal_1").showModal()}
-          >
-            open modal
-          </button>
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
               <div className="">
@@ -97,12 +106,18 @@ const BookDetails = () => {
             </div>
           </dialog>
           <div className="mt-4 flex justify-end">
-            <button
-              className="btn bg-[#004d99] text-white"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
-            >
-              Borrow Now
-            </button>
+            {quantity > 0 ? (
+              <button
+                className="btn bg-[#004d99] text-white"
+                onClick={() =>
+                  document.getElementById("my_modal_1").showModal()
+                }
+              >
+                Borrow Now
+              </button>
+            ) : (
+              <button className="btn btn-disabled">Borrow Now</button>
+            )}
           </div>
         </div>
       </div>
