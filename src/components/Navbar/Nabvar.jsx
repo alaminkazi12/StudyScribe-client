@@ -7,6 +7,12 @@ import { Tooltip } from "react-tooltip";
 const Nabvar = () => {
   const { user, logOut } = useContext(AuthContext);
 
+  const handleLogout = () => [
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error)),
+  ];
+
   const links1 = (
     <>
       <li>
@@ -120,7 +126,7 @@ const Nabvar = () => {
               <li>
                 <Link to="/update_profile">Update Profile</Link>
               </li>
-              <li onClick={() => logOut()}>
+              <li onClick={handleLogout}>
                 <a>Log Out</a>
               </li>
             </ul>

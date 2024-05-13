@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Login = () => {
   const { login, googleLogin, gitHubLogin } = useContext(AuthContext);
@@ -23,6 +24,18 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        const userEmail = user.email;
+
+        // gat access token
+
+        axios
+          .post("http://localhost:5000/jwt", userEmail, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+
         toast.success("Logged In Successfully!", {
           position: "top-right",
         });

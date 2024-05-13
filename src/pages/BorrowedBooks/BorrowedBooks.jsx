@@ -8,7 +8,9 @@ const BorrowedBooks = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
+      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setBorrowedBooks(res.data);
       });
