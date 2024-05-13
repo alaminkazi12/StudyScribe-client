@@ -142,13 +142,14 @@ const Nabvar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/profile" className="justify-between">
-                  {user?.displayName || "Not Found"}
-                </Link>
+                {user?.displayName || "Not Found"}
+                {/* <Link to="/profile" className="justify-between">
+                  
+                </Link> */}
               </li>
-              <li>
+              {/* <li>
                 <Link to="/update_profile">Update Profile</Link>
-              </li>
+              </li> */}
               <li onClick={handleLogout}>
                 <a>Log Out</a>
               </li>
