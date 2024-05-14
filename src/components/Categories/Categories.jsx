@@ -15,10 +15,12 @@ const Categories = () => {
     });
   }, [axiosSecure]);
   return (
-    <div className="mt-14 bg-[#f5f5f5] rounded-2xl p-6">
+    <div className="lg:mt-14 bg-[#f5f5f5] rounded-2xl p-6">
       <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-[#004d99]">Books Categories</h2>
-        <p className="w-[60%] mx-auto">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#004d99]">
+          Books Categories
+        </h2>
+        <p className="w-[60%] mx-auto text-xs md:text-md lg:text-lg">
           Dive into a world of captivating genres - from magical realms of
           fantasy to timeless classics and heartwarming romances.
         </p>

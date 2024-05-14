@@ -17,10 +17,10 @@ const BooksToRent = () => {
   return (
     <div className="mt-14">
       <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-[#004d99]">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#004d99]">
           Discover Your Next Adventure
         </h2>
-        <p className="w-[60%] mx-auto">
+        <p className="w-[60%] mx-auto text-xs md:text-md lg:text-lg">
           Explore a World of Stories with Our Book Rental Service
         </p>
       </div>

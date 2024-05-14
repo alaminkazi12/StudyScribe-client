@@ -47,7 +47,7 @@ const AddBook = () => {
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         Add A Book
       </h2>
-      <form onSubmit={handleAdd} className="card-body w-1/2 mx-auto">
+      <form onSubmit={handleAdd} className="card-body md:w-1/2 mx-auto">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Image</span>
@@ -72,7 +72,7 @@ const AddBook = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="md:flex items-center justify-between">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Author Name</span>
@@ -154,7 +154,7 @@ const AddBook = () => {
         </div>
 
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Add Book</button>
+          <button className="btn bg-[#004d99] text-white">Add Book</button>
         </div>
       </form>
     </div>

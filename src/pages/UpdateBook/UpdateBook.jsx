@@ -47,7 +47,7 @@ const UpdateBook = () => {
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         Update Books : {name}
       </h2>
-      <form onSubmit={handleUpdate} className="card-body w-1/2 mx-auto">
+      <form onSubmit={handleUpdate} className="card-body md:w-1/2 mx-auto">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Image</span>
@@ -74,7 +74,7 @@ const UpdateBook = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="md:flex items-center justify-between">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Author Name</span>
@@ -125,7 +125,7 @@ const UpdateBook = () => {
           </select>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Update Now</button>
+          <button className="btn bg-[#004d99] text-white">Update Now</button>
         </div>
       </form>
     </div>

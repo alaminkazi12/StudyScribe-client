@@ -22,7 +22,7 @@ const Banner = () => {
   }, [axiosSecure]);
 
   return (
-    <div className="h-[550px] bg-[#f5f5f5] rounded-2xl mt-10">
+    <div className=" bg-[#f5f5f5] rounded-2xl mt-10">
       <Swiper
         pagination={{
           type: "fraction",

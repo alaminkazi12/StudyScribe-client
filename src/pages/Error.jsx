@@ -6,13 +6,14 @@ export default function ErrorPage() {
   console.error(error);
 
   return (
-    <div id="error-page">
+    <div id="error-page" className="flex flex-col items-center justify-center">
       <Helmet>
         <title>Error | StudyScribe.com</title>
       </Helmet>
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
+      <img className="w-[300px]" src="/src/assets/404.png" />
+      <h1 className="text-3xl font-bold">Oops!</h1>
+      <p className="text-xl">Sorry, an unexpected error has occurred.</p>
+      <p className="text-red-500 font-bold text-3xl">
         <i>{error.statusText || error.message}</i>
       </p>
     </div>

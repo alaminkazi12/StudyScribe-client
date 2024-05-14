@@ -33,10 +33,10 @@ const AllBooks = () => {
       <Helmet>
         <title> All Books | StudyScribe.com</title>
       </Helmet>
-      <div className="flex items-center justify-between mt-10">
+      <div className="flex flex-col md:flex-row items-center justify-between mt-10">
         <div>
           <button
-            className="btn btn-outline"
+            className="btn btn-outline btn-sm md:btn-md"
             onClick={() => setShowAvailable(!showAvailable)}
           >
             Show Available Books
@@ -48,8 +48,8 @@ const AllBooks = () => {
               onClick={() => setCurrentPage(page)}
               className={
                 currentPage === page
-                  ? "btn mr-2 btn-square font-bold text-white bg-[#004d99]"
-                  : "btn mr-2 btn-square font-bold"
+                  ? "btn mr-2 btn-square font-bold text-white bg-[#004d99] btn-sm md:btn-md"
+                  : "btn mr-2 btn-square font-bold btn-sm md:btn-md"
               }
               key={page}
             >
@@ -59,7 +59,7 @@ const AllBooks = () => {
         </div>
         <div className="flex items-center gap-2">
           <button
-            className={`btn text-2xl ${
+            className={`btn md:text-xl lg:text-2xl btn-sm md:btn-md ${
               viewType === "grid" ? "bg-[#004d99] text-white" : ""
             }`}
             onClick={() => setViewType("grid")}
@@ -67,7 +67,7 @@ const AllBooks = () => {
             <CiGrid41 />
           </button>
           <button
-            className={`btn text-2xl ${
+            className={`btn md:text-xl lg:text-2xl btn-sm md:btn-md ${
               viewType === "list" ? "bg-[#004d99] text-white" : ""
             }`}
             onClick={() => setViewType("list")}

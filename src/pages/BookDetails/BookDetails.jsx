@@ -84,13 +84,13 @@ const BookDetails = () => {
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         {name}
       </h2>
-      <div className="flex justify-between  items-center mt-6 border-2 rounded-2xl">
-        <div className="w-[40%]">
+      <div className="md:flex justify-between  items-center mt-6 border-2 rounded-2xl">
+        <div className="md:w-[40%]">
           <img src={image} alt={image} />
         </div>
-        <div className="w-[60%] bg-[#f5f5f5] p-12 mr-8 rounded-2xl">
-          <h2 className="text-4xl "> Name: {name}</h2>
-          <h4 className="text-xl mt-2"> Author: {author}</h4>
+        <div className="md:w-[60%] bg-[#f5f5f5] p-12 mr-8 rounded-2xl">
+          <h2 className=" text-2xl md:text-3xl lg:text-4xl "> Name: {name}</h2>
+          <h4 className="md:text-xl mt-2"> Author: {author}</h4>
           <p className="text-lg mt-2"> Category: {category}</p>
           <p className="mt-6">
             {" "}
