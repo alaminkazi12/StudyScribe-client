@@ -7,7 +7,7 @@ const Footer = () => {
         <nav>
           <h1 className=" text-sm md:text-xl  lg:text-3xl cursor-pointer text-[#004d99]">
             <Link to="/">
-              <img className="w-2/3" src="/src/assets/StudyScribe-logo.png" />
+              <img className="w-2/3" src="/assets/StudyScribe-logo.png" />
             </Link>
           </h1>
         </nav>

@@ -30,7 +30,7 @@ const Login = () => {
         // gat access token
 
         axios
-          .post("http://localhost:5000/jwt", userEmail, {
+          .post("https://studyscribe-server.vercel.app/jwt", userEmail, {
             withCredentials: true,
           })
           .then((res) => {
