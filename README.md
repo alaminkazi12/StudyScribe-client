@@ -1,8 +1,8 @@
 studyscribe
 
-WEBSITE LINK: https://studyscribe-a50b5.web.app/
+WEBSITE LINK: https://studyscribe.netlify.app/
 
-SERVER LINK: http://localhost:5000/
+SERVER LINK: https://studyscribe-server.vercel.app/
 
 THE FEAUTES OF THE SITE:
 

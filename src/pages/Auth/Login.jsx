@@ -30,7 +30,7 @@ const Login = () => {
         // gat access token
 
         axios
-          .post("http://localhost:5000/jwt", userEmail, {
+          .post("https://studyscribe-server.vercel.app/jwt", userEmail, {
             withCredentials: true,
           })
           .then((res) => {
@@ -65,15 +65,15 @@ const Login = () => {
   };
 
   //   github Login
-  const GitHubLoginHandler = () => {
-    gitHubLogin().then(() => {
-      toast.success("Logged In Successfully!", {
-        position: "top-right",
-      });
+  // const GitHubLoginHandler = () => {
+  //   gitHubLogin().then(() => {
+  //     toast.success("Logged In Successfully!", {
+  //       position: "top-right",
+  //     });
 
-      navigate(location?.state ? location.state : "/");
-    });
-  };
+  //     navigate(location?.state ? location.state : "/");
+  //   });
+  // };
   return (
     <div className="mt-10">
       <Helmet>
@@ -90,12 +90,12 @@ const Login = () => {
         >
           <FcGoogle />
         </button>
-        <button
+        {/* <button
           onClick={GitHubLoginHandler}
           className="btn btn-circle border-2 border-gray-400 text-3xl"
         >
           <FaGithub />
-        </button>
+        </button> */}
       </div>
       <div className="divider text-[#004d99]">Or</div>
       <form

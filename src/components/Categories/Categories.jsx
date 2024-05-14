@@ -8,10 +8,12 @@ import axios from "axios";
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/categories").then((res) => {
-      // console.log(res.data);
-      setCategories(res.data);
-    });
+    axios
+      .get("https://studyscribe-server.vercel.app/categories")
+      .then((res) => {
+        // console.log(res.data);
+        setCategories(res.data);
+      });
   }, []);
   return (
     <div className="lg:mt-14 bg-[#f5f5f5] rounded-2xl p-6">

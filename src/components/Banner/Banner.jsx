@@ -14,10 +14,12 @@ import axios from "axios";
 const Banner = () => {
   const [featuredbooks, setFeaturedBooks] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/featuredbooks").then((res) => {
-      // console.log(res.data);
-      setFeaturedBooks(res.data);
-    });
+    axios
+      .get("https://studyscribe-server.vercel.app/featuredbooks")
+      .then((res) => {
+        // console.log(res.data);
+        setFeaturedBooks(res.data);
+      });
   }, []);
 
   return (

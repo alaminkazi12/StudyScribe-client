@@ -25,17 +25,19 @@ const UpdateBook = () => {
       category,
     };
 
-    axios.put(`http://localhost:5000/book/${_id}`, updatedBooks).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          icon: "success",
-          title: "Book Updated Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    axios
+      .put(`https://studyscribe-server.vercel.app/book/${_id}`, updatedBooks)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: "Book Updated Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
 
     console.log(updatedBooks);
   };

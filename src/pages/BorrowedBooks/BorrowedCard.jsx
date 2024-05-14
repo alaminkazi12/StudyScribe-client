@@ -7,25 +7,29 @@ const BorrowedCard = ({ book }) => {
   const { bookId, BorrowDate, returnDate } = book;
   const [borrowedBook, setBorrowedBook] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:5000/book/${bookId}`).then((res) => {
-      setBorrowedBook(res.data);
-    });
+    axios
+      .get(`https://studyscribe-server.vercel.app/book/${bookId}`)
+      .then((res) => {
+        setBorrowedBook(res.data);
+      });
   }, [bookId]);
 
   const { image, name, author, category } = borrowedBook;
 
   const handleReturn = () => {
-    axios.put(`http://localhost:5000/retun-book/${bookId}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        Swal.fire({
-          icon: "success",
-          title: "Returned Successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        location.reload();
-      }
-    });
+    axios
+      .put(`https://studyscribe-server.vercel.app/retun-book/${bookId}`)
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            icon: "success",
+            title: "Returned Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          location.reload();
+        }
+      });
   };
 
   return (

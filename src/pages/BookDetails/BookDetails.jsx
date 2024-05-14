@@ -30,7 +30,9 @@ const BookDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
+      .get(
+        `https://studyscribe-server.vercel.app/borrow-book/?email=${user?.email}`
+      )
       .then((res) => {
         setBorrowedBooks(res.data);
         // console.log(res.data);
@@ -62,7 +64,9 @@ const BookDetails = () => {
 
     if (upQuantity > 0) {
       axios
-        .post(`http://localhost:5000/borrow-book/${_id}`, { updatedInfo })
+        .post(`https://studyscribe-server.vercel.app/borrow-book/${_id}`, {
+          updatedInfo,
+        })
         .then((res) => {
           if (res.data.insertedId) {
             setupQuantity(quantity - 1);
