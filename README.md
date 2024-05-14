@@ -1,8 +1,15 @@
-# React + Vite
+studyscribe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WEBSITE LINK: https://studyscribe-a50b5.web.app/
 
-Currently, two official plugins are available:
+SERVER LINK: https://studyscribe-server.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+THE FEAUTES OF THE SITE:
+
+IT IS A LIBRAY MANAGEMENT WEBSITE
+USER CAN VIEW THE AVAILABLE BOOKS
+CAN SHORT THE BOOKS
+CAN VIEW THE DETAILS (LOGGIN NEEDED)
+AFTER LOGIN CAN ADD BOOK
+UPDATE BOOK
+BORROW AND RETURN BOOK
