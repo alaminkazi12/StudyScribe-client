@@ -10,6 +10,7 @@ const AllBooks = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [viewType, setViewType] = useState("grid");
+  const [showAvailable, setShowAvailable] = useState(false); // State to manage the filter for available books
   const numberOfPages = Math.ceil(count / 10);
   const pages = [...Array(numberOfPages).keys()];
 
@@ -22,10 +23,22 @@ const AllBooks = () => {
       });
   }, [currentPage]);
 
+  const filteredProducts = showAvailable
+    ? products.filter((product) => product.quantity > 0)
+    : products;
+
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-between mt-10">
+        <div>
+          <button
+            className="btn btn-outline"
+            onClick={() => setShowAvailable(!showAvailable)}
+          >
+            Show Available Books
+          </button>
+        </div>
+        <div className="flex items-center justify-center ">
           {pages.map((page) => (
             <button
               onClick={() => setCurrentPage(page)}
@@ -66,16 +79,8 @@ const AllBooks = () => {
             : "mt-20"
         }`}
       >
-        {/* {products.map((product) =>
-          viewType === "grid" ? (
-            <BookGridCard key={product._id} product={product} />
-          ) : (
-            <BookTable key={product._id} product={product} />
-          )
-        )} */}
-
         {viewType === "grid" ? (
-          products.map((product) => (
+          filteredProducts.map((product) => (
             <BookGridCard key={product._id} product={product} />
           ))
         ) : (
@@ -91,7 +96,7 @@ const AllBooks = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <BookTable key={product._id} product={product} />
                 ))}
               </tbody>
