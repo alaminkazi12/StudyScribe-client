@@ -17,6 +17,8 @@ const firebaseConfig = {
   appId: "1:48999924744:web:9f70e72aeaeeab0cf77dbd",
 };
 
+import.meta.env.VITE_APIKEY;
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 export default auth;

@@ -2,11 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookGridCard from "./BookGridCard";
+import { CiGrid41, CiBoxList } from "react-icons/ci";
+import BookTable from "./BookTable";
 
 const AllBooks = () => {
   const { count } = useLoaderData();
   const [products, setProducts] = useState([]);
-  const [currentPage, setcurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [viewType, setViewType] = useState("grid");
   const numberOfPages = Math.ceil(count / 10);
   const pages = [...Array(numberOfPages).keys()];
 
@@ -21,25 +24,80 @@ const AllBooks = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center mt-10">
-        {pages.map((page) => (
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center mt-10">
+          {pages.map((page) => (
+            <button
+              onClick={() => setCurrentPage(page)}
+              className={
+                currentPage === page
+                  ? "btn mr-2 btn-square font-bold text-white bg-[#004d99]"
+                  : "btn mr-2 btn-square font-bold"
+              }
+              key={page}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => setcurrentPage(page)}
-            className={
-              currentPage === page
-                ? "btn mr-2 btn-square font-bold text-white bg-[#004d99]"
-                : "btn mr-2 btn-square font-bold"
-            }
-            key={page}
+            className={`btn text-2xl ${
+              viewType === "grid" ? "bg-[#004d99] text-white" : ""
+            }`}
+            onClick={() => setViewType("grid")}
           >
-            {page}
+            <CiGrid41 />
           </button>
-        ))}
+          <button
+            className={`btn text-2xl ${
+              viewType === "list" ? "bg-[#004d99] text-white" : ""
+            }`}
+            onClick={() => setViewType("list")}
+          >
+            <CiBoxList />
+          </button>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20">
-        {products.map((product) => (
-          <BookGridCard key={product._id} product={product}></BookGridCard>
-        ))}
+      <div
+        className={`grid ${
+          viewType === "grid"
+            ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20"
+            : "mt-20"
+        }`}
+      >
+        {/* {products.map((product) =>
+          viewType === "grid" ? (
+            <BookGridCard key={product._id} product={product} />
+          ) : (
+            <BookTable key={product._id} product={product} />
+          )
+        )} */}
+
+        {viewType === "grid" ? (
+          products.map((product) => (
+            <BookGridCard key={product._id} product={product} />
+          ))
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th className="md:text-lg ">Book Details</th>
+                  <th className="md:text-lg ">Category</th>
+                  <th className="md:text-lg ">Author</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <BookTable key={product._id} product={product} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
