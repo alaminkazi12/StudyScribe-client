@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 const BookDetails = () => {
   const axiosSecure = useAxiosSecure([]);
   const { user } = useContext(AuthContext);
@@ -76,6 +77,9 @@ const BookDetails = () => {
 
   return (
     <div className="mt-10 ">
+      <Helmet>
+        <title> {name} | StudyScribe.com</title>
+      </Helmet>
       <ToastContainer />
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         {name}

@@ -89,7 +89,7 @@ const Nabvar = () => {
     </>
   );
   return (
-    <div className="navbar mt-6">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -103,7 +103,9 @@ const Nabvar = () => {
           </ul>
         </div>
         <h1 className=" text-sm md:text-xl  lg:text-3xl cursor-pointer text-[#004d99]">
-          <Link to="/">StudyScribe</Link>
+          <Link to="/">
+            <img className="w-2/3" src="/src/assets/StudyScribe-logo.png" />
+          </Link>
         </h1>
       </div>
       <div className="navbar-center hidden md:flex">

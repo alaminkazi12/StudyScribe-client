@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import BookGridCard from "./BookGridCard";
 import { CiGrid41, CiBoxList } from "react-icons/ci";
 import BookTable from "./BookTable";
+import { Helmet } from "react-helmet-async";
 
 const AllBooks = () => {
   const { count } = useLoaderData();
@@ -29,6 +30,9 @@ const AllBooks = () => {
 
   return (
     <div>
+      <Helmet>
+        <title> All Books | StudyScribe.com</title>
+      </Helmet>
       <div className="flex items-center justify-between mt-10">
         <div>
           <button

@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { login, googleLogin, gitHubLogin } = useContext(AuthContext);
@@ -75,9 +76,9 @@ const Login = () => {
   };
   return (
     <div className="mt-10">
-      {/* <Helmet>
-        <title>Login | CraftyFiber.com</title>
-      </Helmet> */}
+      <Helmet>
+        <title>Login | StudyScribe.com</title>
+      </Helmet>
       <ToastContainer />
       <h2 className="  lg:text-4xl font-bold text-center text-[#004d99]">
         Login

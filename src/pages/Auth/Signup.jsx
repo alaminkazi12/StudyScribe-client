@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
   const [show, setshow] = useState(false);
@@ -74,9 +75,9 @@ const Signup = () => {
 
   return (
     <div className="mt-10">
-      {/* <Helmet>
-        <title>SignUp | CraftyFiber.com</title>
-      </Helmet> */}
+      <Helmet>
+        <title>SignUp | StudyScribe.com</title>
+      </Helmet>
       <ToastContainer />
       <h2 className="lg:text-2xl font-bold text-center text-[#004d99]">
         New to StudyScribe? <br /> Quickly signup for an account now.

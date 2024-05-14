@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -40,6 +41,9 @@ const UpdateBook = () => {
   };
   return (
     <div className="mt-10">
+      <Helmet>
+        <title>Update Book | StudyScribe.com</title>
+      </Helmet>
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         Update Books : {name}
       </h2>

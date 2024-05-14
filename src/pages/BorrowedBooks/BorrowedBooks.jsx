@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import BorrowedCard from "./BorrowedCard";
+import { Helmet } from "react-helmet-async";
 
 const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,9 @@ const BorrowedBooks = () => {
 
   return (
     <div className="mt-10">
+      <Helmet>
+        <title>Borrowed Books | StudyScribe.com</title>
+      </Helmet>
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         My Borrowed Books
       </h2>

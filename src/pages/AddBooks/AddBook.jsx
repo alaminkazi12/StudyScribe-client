@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const AddBook = () => {
@@ -40,6 +41,9 @@ const AddBook = () => {
 
   return (
     <div className="mt-10">
+      <Helmet>
+        <title>Add Book | StudyScribe.com</title>
+      </Helmet>
       <h2 className="lg:text-3xl font-bold text-center text-[#004d99]">
         Add A Book
       </h2>

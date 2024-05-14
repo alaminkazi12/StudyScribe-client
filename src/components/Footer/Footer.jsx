@@ -5,9 +5,11 @@ const Footer = () => {
     <footer className="p-10 bg-black mt-16">
       <div className="footer  text-base-content ">
         <nav>
-          <h2 className="text-3xl mt-5 font-bold text-[#004d99]">
-            StudyScribe
-          </h2>
+          <h1 className=" text-sm md:text-xl  lg:text-3xl cursor-pointer text-[#004d99]">
+            <Link to="/">
+              <img className="w-2/3" src="/src/assets/StudyScribe-logo.png" />
+            </Link>
+          </h1>
         </nav>
         <nav className="text-white">
           <h6 className="footer-title">Pages</h6>
