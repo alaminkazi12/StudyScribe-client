@@ -8,10 +8,9 @@ import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 const BookDetails = () => {
-  const axiosSecure = useAxiosSecure([]);
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const displayName = user?.displayName;
@@ -30,11 +29,13 @@ const BookDetails = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get(`/borrow-book/?email=${user?.email}`).then((res) => {
-      setBorrowedBooks(res.data);
-      console.log(res.data);
-    });
-  }, [user, axiosSecure]);
+    axios
+      .get(`http://localhost:5000/borrow-book/?email=${user?.email}`)
+      .then((res) => {
+        setBorrowedBooks(res.data);
+        // console.log(res.data);
+      });
+  }, [user]);
 
   const handleBorrow = (e) => {
     const alreadyBorrowed = borrowedBooks.find((book) => book.bookId === _id);
@@ -60,18 +61,20 @@ const BookDetails = () => {
     const updatedInfo = { returnDate, email, displayName, BorrowDate };
 
     if (upQuantity > 0) {
-      axiosSecure.post(`/borrow-book/${_id}`, { updatedInfo }).then((res) => {
-        if (res.data.insertedId) {
-          setupQuantity(quantity - 1);
-          location.reload();
-          Swal.fire({
-            icon: "success",
-            title: "Borrowed Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+      axios
+        .post(`http://localhost:5000/borrow-book/${_id}`, { updatedInfo })
+        .then((res) => {
+          if (res.data.insertedId) {
+            setupQuantity(quantity - 1);
+            location.reload();
+            Swal.fire({
+              icon: "success",
+              title: "Borrowed Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
     }
   };
 

@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(user);
+  // console.log(user);
 
   const signUp = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
       // if user exists then issue a token
       if (currentUser) {
         axios
-          .post("https://studyscribe-server.vercel.app/jwt", loggedUser, {
+          .post("http://localhost:5000/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -77,7 +77,7 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("https://studyscribe-server.vercel.app/logout", loggedUser, {
+          .post("http://localhost:5000/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => console.log(res.data));

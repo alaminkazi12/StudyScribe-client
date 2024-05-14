@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/allbooks",
         element: <AllBooks></AllBooks>,
-        loader: () => fetch("https://studyscribe-server.vercel.app/bookscount"),
+        loader: () => fetch("http://localhost:5000/bookscount"),
       },
       {
         path: "/borrowedbooks",
@@ -59,15 +59,13 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`https://studyscribe-server.vercel.app/book/${params.id}`),
+          fetch(`http://localhost:5000/book/${params.id}`),
       },
       {
         path: "/category/:name",
         element: <CategoryDetails></CategoryDetails>,
         loader: ({ params }) =>
-          fetch(
-            `https://studyscribe-server.vercel.app/category/${params.name}`
-          ),
+          fetch(`http://localhost:5000/category/${params.name}`),
       },
       {
         path: "/book/:id",
@@ -77,7 +75,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`https://studyscribe-server.vercel.app/book/${params.id}`),
+          fetch(`http://localhost:5000/book/${params.id}`),
       },
     ],
   },

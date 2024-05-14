@@ -26,19 +26,17 @@ const AddBook = () => {
       content,
     };
 
-    axios
-      .post(`https://studyscribe-server.vercel.app/books`, Books)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: "Book Added Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axios.post(`http://localhost:5000/books`, Books).then((res) => {
+      // console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Book Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (

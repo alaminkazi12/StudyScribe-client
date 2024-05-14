@@ -10,7 +10,7 @@ export default function ErrorPage() {
       <Helmet>
         <title>Error | StudyScribe.com</title>
       </Helmet>
-      <img className="w-[300px]" src="/src/assets/404.png" />
+      <img className="w-[300px]" src="/assets/404.png" />
       <h1 className="text-3xl font-bold">Oops!</h1>
       <p className="text-xl">Sorry, an unexpected error has occurred.</p>
       <p className="text-red-500 font-bold text-3xl">

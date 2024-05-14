@@ -9,17 +9,16 @@ import {
 import "swiper/css/bundle";
 import { useEffect, useState } from "react";
 import BannerCard from "./BannerCard";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 const Banner = () => {
-  const axiosSecure = useAxiosSecure([]);
   const [featuredbooks, setFeaturedBooks] = useState([]);
   useEffect(() => {
-    axiosSecure.get("/featuredbooks").then((res) => {
-      console.log(res.data);
+    axios.get("http://localhost:5000/featuredbooks").then((res) => {
+      // console.log(res.data);
       setFeaturedBooks(res.data);
     });
-  }, [axiosSecure]);
+  }, []);
 
   return (
     <div className=" bg-[#f5f5f5] rounded-2xl mt-10">

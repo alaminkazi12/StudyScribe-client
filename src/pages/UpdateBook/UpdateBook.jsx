@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const UpdateBook = () => {
   const book = useLoaderData();
-  console.log(book);
+  // console.log(book);
   const { image, name, author, category, rating, _id } = book;
 
   const handleUpdate = (e) => {
@@ -25,19 +25,17 @@ const UpdateBook = () => {
       category,
     };
 
-    axios
-      .put(`https://studyscribe-server.vercel.app/book/${_id}`, updatedBooks)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.modifiedCount > 0) {
-          Swal.fire({
-            icon: "success",
-            title: "Book Updated Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axios.put(`http://localhost:5000/book/${_id}`, updatedBooks).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          icon: "success",
+          title: "Book Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
 
     console.log(updatedBooks);
   };

@@ -17,11 +17,9 @@ const AllBooks = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://studyscribe-server.vercel.app/books?page=${currentPage}&size=10`
-      )
+      .get(`http://localhost:5000/books?page=${currentPage}&size=10`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setProducts(res.data);
       });
   }, [currentPage]);

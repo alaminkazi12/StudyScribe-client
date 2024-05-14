@@ -49,7 +49,7 @@ const Signup = () => {
     // sign up
     signUp(email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
+        // console.log(userCredential.user);
 
         toast.success("Account Created Successfully!", {
           position: "top-right",

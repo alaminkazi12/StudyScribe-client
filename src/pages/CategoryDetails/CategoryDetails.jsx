@@ -9,12 +9,10 @@ const CategoryDetails = () => {
   const [categorizedBooks, setCategorizedBooks] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`https://studyscribe-server.vercel.app/books/c/${category_name}`)
-      .then((res) => {
-        console.log(res.data);
-        setCategorizedBooks(res.data);
-      });
+    axios.get(`http://localhost:5000/books/c/${category_name}`).then((res) => {
+      // console.log(res.data);
+      setCategorizedBooks(res.data);
+    });
   }, [category_name]);
   return (
     <div className="mt-10">
