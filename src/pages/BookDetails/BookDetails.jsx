@@ -31,7 +31,10 @@ const BookDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `https://studyscribe-server.vercel.app/borrow-book/?email=${user?.email}`
+        `https://studyscribe-server.vercel.app/borrow-book/?email=${user?.email}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         setBorrowedBooks(res.data);

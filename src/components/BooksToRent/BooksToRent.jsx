@@ -9,9 +9,13 @@ const BooksToRent = () => {
   const [Products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://studyscribe-server.vercel.app/books`).then((res) => {
-      setProducts(res.data);
-    });
+    axios
+      .get(`https://studyscribe-server.vercel.app/books`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setProducts(res.data);
+      });
   }, []);
 
   return (
